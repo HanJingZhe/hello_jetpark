@@ -1,6 +1,7 @@
 package com.qtgm.hello_coroutine
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         tvHello.text = "hello coroutine ${System.currentTimeMillis()}"
 
 //        setHelloTv()
-
+        startActivity(Intent(this, Day2Activity::class.java))
 
         Log.e(TAG, "hello coroutine , thread = ${Thread.currentThread().name}")
 
