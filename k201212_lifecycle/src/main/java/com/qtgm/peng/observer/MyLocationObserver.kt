@@ -6,7 +6,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-class MyLocationObserver(act: Activity, onLocationChangeListener: OnLocationChangeListener) :
+class MyLocationObserver(
+    val act: Activity,
+    val onLocationChangeListener: OnLocationChangeListener
+) :
     LifecycleObserver {
 
     val TAG = MyLocationObserver::class.java.name
@@ -22,6 +25,7 @@ class MyLocationObserver(act: Activity, onLocationChangeListener: OnLocationChan
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun getLocation() {
         Log.e(TAG, "get location()")
+        onLocationChangeListener.onLocationChange(1_192.0, 168.0)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

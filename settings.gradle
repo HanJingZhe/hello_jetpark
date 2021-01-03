@@ -1,3 +1,3 @@
 include ':k201230_hello_coroutine'
-include ':app'
+include ':k201212_lifecycle'
 rootProject.name = "peng_demo"

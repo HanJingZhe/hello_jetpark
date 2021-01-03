@@ -7,7 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 
 class MyApplicationObserver : LifecycleObserver {
 
-    val TAG = MyApplicationObserver::class.java.name
+    private val TAG = this.javaClass.name
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -35,6 +35,9 @@ class MyApplicationObserver : LifecycleObserver {
         Log.e(TAG, "the app is pause")
     }
 
+    /**
+     * onDestroy不会分发
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         Log.e(TAG, "the app is destroy")

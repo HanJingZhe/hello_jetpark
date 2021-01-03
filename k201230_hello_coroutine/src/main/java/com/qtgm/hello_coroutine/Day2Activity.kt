@@ -45,8 +45,8 @@ class Day2Activity : AppCompatActivity() {
 
 //        zip()
 
-//        doHomeWork2()
-        testMainScope()
+        doHomeWork2()
+//        testMainScope()
     }
 
     private fun testMainScope() {
