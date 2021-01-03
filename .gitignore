@@ -11,3 +11,5 @@
 *.bat
 /androidTest
 /test
+*.markdown
+*.git
