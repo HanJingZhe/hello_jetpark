@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">k210103_hello_navigation</string>
+    <string name="app_name">navigation</string>
     <string name="hello_main_fragment">Hello , this MainFragment</string>
     <string name="hello_second_fragment">Hello , this SecondFragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

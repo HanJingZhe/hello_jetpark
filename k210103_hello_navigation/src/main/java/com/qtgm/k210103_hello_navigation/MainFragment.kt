@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_main.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +20,26 @@ class MainFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment MainFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            MainFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +66,10 @@ class MainFragment : Fragment() {
         bundle.putString("paramString", "navigation start here")
 
         //func 1
-        btnToSecondFragment.setOnClickListener {
+        /*btnToSecondFragment.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_mainFragment_to_secondFragment, bundle)
-        }
+        }*/
 
         //func 2
         //btnToSecondFragment.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_secondFragment))
@@ -59,23 +77,44 @@ class MainFragment : Fragment() {
 
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    /* private fun sendNotification() {
+        if (activity == null) return
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, "ChannelName", importance)
+            channel.description = "description"
+            val notificationManager = activity?.getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(channel)
+        }
+
+        NotificationCompat.Builder(activity!!, CHANNEL_ID)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle("DeepLinkDemo")
+            .setContentText("Hello Navigation")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(getPendingIntent())
+            .setAutoCancel(true)
+
+        val notificationManager = NotificationManagerCompat.from(activity!!)
+        notificationManager.notify(notificationId, build.build())
+
+
     }
+
+    private fun getPendingIntent(): PendingIntent? {
+        if (activity == null) return null
+
+        val bundle = Bundle()
+        bundle.putString("params", "params from notification")
+        return Navigation.findNavController(activity!!, R.id.sendNotification)
+            .createDeepLink()
+            .setGraph(R.navigation.graph_main_activity)
+            .setDestination(R.id.deepLinkSettingsFragment)
+            .setArguments(bundle)
+            .createPendingIntent()
+    }*/
+
+
 }
