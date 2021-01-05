@@ -1,3 +1,4 @@
+include ':base_lib'
 include ':k210103_hello_navigation'
 include ':k201230_hello_coroutine'
 include ':k201212_lifecycle'
