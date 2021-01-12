@@ -3,7 +3,7 @@ package com.qtgm.base.utils
 import android.util.Log
 import com.qtgm.base.BuildConfig
 
-object MsLogUtils {
+object MsLog {
 
     private val TAG = this.javaClass.name
 

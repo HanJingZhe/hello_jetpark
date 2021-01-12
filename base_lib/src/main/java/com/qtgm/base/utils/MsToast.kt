@@ -1,13 +1,17 @@
 package com.qtgm.base.utils
 
-import android.app.Activity
+import android.content.Context
 import android.widget.Toast
 import com.qtgm.base.BuildConfig
 
-object MsToastUtils {
+object MsToast {
 
     private val ISDEBUG = BuildConfig.DEBUG
-    private var mContext = Activity()
+    private lateinit var mContext: Context
+
+    fun initToast(ctx: Context) {
+        mContext = ctx
+    }
 
     fun toastS(msg: String) {
         if (!ISDEBUG) return
