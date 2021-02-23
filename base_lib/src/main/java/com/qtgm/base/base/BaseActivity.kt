@@ -15,12 +15,14 @@ import com.qtgm.base.dialog.MsLoadingDialog
 abstract class BaseActivity : AppCompatActivity() {
 
     protected lateinit var mContext: Context
+    protected lateinit var TAG: String
 
     protected val msLoadingDialog: MsLoadingDialog by lazy { MsLoadingDialog(mContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
+        TAG = this.javaClass.simpleName
         setContentView(setLayoutId())
         initView()
         initData()

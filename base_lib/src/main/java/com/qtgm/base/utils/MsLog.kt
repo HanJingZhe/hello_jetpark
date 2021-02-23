@@ -17,10 +17,10 @@ object MsLog {
     fun e(tag: String = TAG, msg: String) {
         var str = msg
         while (str.length > MAXLENGTH) {
-            Log.e("$tag=====================", str.substring(0, MAXLENGTH))
+            Log.e("$TAG-$tag=====================", str.substring(0, MAXLENGTH))
             str = str.substring(MAXLENGTH)
         }
-        Log.e("$tag=====================", str)
+        Log.e("$TAG-$tag=====================", str)
     }
 
 }
