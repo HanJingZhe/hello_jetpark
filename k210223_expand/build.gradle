@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -40,6 +41,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation project(path: ':base_lib')
-
+//    api 'androidx.room:room-compiler:2.2.5'
+//    kapt 'androidx.room:room-compiler:2.2.5'
 
 }
