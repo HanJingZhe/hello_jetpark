@@ -1,6 +1,6 @@
-include ':k210223_expand'
+rootProject.name = "peng_demo"
 include ':base_lib'
-include ':k210103_hello_navigation'
 include ':k201230_hello_coroutine'
 include ':k201212_lifecycle'
-rootProject.name = "peng_demo"
+include ':k210103_hello_navigation'
+include ':k210223_expand'

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".md.StatusActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        android:background="#f00"
+        android:text="你好 我是杀伤力卡到了空间打开链接发多斯拉克看见了健康萨迪克多斯拉克大盛魁昆仑决打开了就是的快乐的深刻理解空间快乐就是多了可接受的风口浪尖第三方看见了科技类似的法律框架的授课老师发的快乐就是的罚款了缴费多少块连接方式登录跨境电商法律框架地方撒即可楼上的伐看见了" />
+
+    <ImageView
+        android:id="@+id/ivShow"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#f00"
+        android:src="@mipmap/img_constellation_4" />
+
+</LinearLayout>

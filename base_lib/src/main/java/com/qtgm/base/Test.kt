@@ -1,14 +1,12 @@
 package com.qtgm.base
 
 fun main() {
-    val p = arrayOf("a", "B")
-    val a = arrayListOf("a", "B")
-    val c = intArrayOf(1, 2, 3)
-    val d = doubleArrayOf(1.0, 2.0, 3.0)
-
-
-    println(p::class)
-    println(a::class)
-    println(c::class)
-    println(d::class)
+    val i = 1 and 2
+    val a = 3 and 5
+    val c = 5 and 7
+    val d = 2 or 6
+    println(i)
+    println(a)
+    println(c)
+    println(d)
 }

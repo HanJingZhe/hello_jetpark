@@ -1,12 +1,22 @@
 package com.qtgm.base.base
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
+import com.qtgm.base.R
 import com.qtgm.base.dialog.MsLoadingDialog
+import com.qtgm.base.utils.MsLog
+import kotlinx.android.synthetic.main.base_title_layout.*
+import java.util.jar.Attributes
 
 /**
  * @author peng.wang08
@@ -15,15 +25,15 @@ import com.qtgm.base.dialog.MsLoadingDialog
 abstract class BaseActivity : AppCompatActivity() {
 
     protected lateinit var mContext: Context
-    protected lateinit var TAG: String
+    protected val TAG: String = this.javaClass.simpleName
 
     protected val msLoadingDialog: MsLoadingDialog by lazy { MsLoadingDialog(mContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
-        TAG = this.javaClass.simpleName
         setContentView(setLayoutId())
+        setStatusBar()
         initView()
         initData()
     }
@@ -35,6 +45,27 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         msLoadingDialog.dismiss()
         super.onDestroy()
+    }
+
+    open fun setStatusBar(color: Int = Color.TRANSPARENT, dark: Boolean = false) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or if (dark) View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR else 0
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = color
+
+        if (toolBar != null) {
+            toolBar.setPadding(0, getStatusBarHeight(), 0, 0)
+        }
+    }
+
+    private fun getStatusBarHeight(): Int {
+        var result = 0
+        //获取状态栏高度的资源id
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.qtgm.expand.md
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,40 +7,29 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.qtgm.base.base.BaseActivity
+import com.qtgm.base.utils.MsLog
 import com.qtgm.expand.R
 import com.qtgm.expand.entity.AnimalEntity
 import com.qtgm.expand.entity.getAnimals
 import kotlinx.android.synthetic.main.activity_md.*
 import kotlinx.android.synthetic.main.adapter_md_layout.view.*
 
-class MdActivity : AppCompatActivity() {
+class MdActivity : BaseActivity() {
 
-    lateinit var mContext: Context
+    override fun setLayoutId(): Int = R.layout.activity_md
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_md)
-        mContext = this
+    override fun initView() {
         toolBar.title = "MdActivity"
         toolBar.setBackgroundColor(getColor(R.color.teal_200))
         setSupportActionBar(toolBar)
-        initView()
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_md2, menu)
-        return true
-    }
-
-    private fun initView() {
         recyclerView.layoutManager = LinearLayoutManager(mContext)
         recyclerView.adapter =
             AnimalsAdapter(getAnimals())
-
         fab.setOnClickListener {
             Snackbar.make(fab, "data delete", Snackbar.LENGTH_SHORT)
                 .setAction("Undo") {
@@ -49,6 +37,29 @@ class MdActivity : AppCompatActivity() {
                 }
                 .show()
         }
+    }
+
+    override fun initData() {
+        val statusBarHeight = getStatusBarHeight()
+        MsLog.e("statusBar=$statusBarHeight")
+    }
+
+    /**
+     * 利用反射获取状态栏高度
+     */
+    private fun getStatusBarHeight(): Int {
+        var result = 0
+        //获取状态栏高度的资源id
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_md2, menu)
+        return true
     }
 
     class AnimalsAdapter(var list: List<AnimalEntity>) :

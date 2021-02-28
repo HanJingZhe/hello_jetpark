@@ -15,23 +15,15 @@
         android:theme="@style/Theme.Peng_demo">
 
         <activity android:name=".MainActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
-        <activity android:name=".md.MdActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".md.AnimalActivity"/>
+        <activity android:name=".md.MdActivity"/>
+        <activity android:name=".md.AnimalActivity" />
+        <activity android:name=".md.StatusActivity"/>
 
     </application>
 
