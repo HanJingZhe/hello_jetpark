@@ -1,6 +1,8 @@
 package com.qtgm.expand
 
+import android.Manifest
 import com.qtgm.base.base.BaseActivity
+import com.qtgm.base.permission.PermissionX
 import com.qtgm.base.utils.MsLog
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
@@ -8,14 +10,19 @@ import java.io.IOException
 
 class MainActivity : BaseActivity() {
 
+    val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
     override fun setLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
-        MsLog.e(TAG, "initView")
+        MsLog.d( "initView")
+        PermissionX.requestPermission(this, *permissions) { b, list ->
+
+        }
     }
 
     override fun initData() {
-        MsLog.e(TAG, "initData")
+        MsLog.d(TAG, "initData")
         requestOkHttp()
     }
 

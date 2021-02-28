@@ -1,12 +1,17 @@
 package com.qtgm.base
 
 fun main() {
-    val i = 1 and 2
-    val a = 3 and 5
-    val c = 5 and 7
-    val d = 2 or 6
-    println(i)
-    println(a)
-    println(c)
-    println(d)
+
+    var str = "123456789"
+    str = str.substring(0,1024)
+    println(str)
+   /* str = str.substring(2)
+    println(str)
+    str = str.substring(2)
+    println(str)
+    str = str.substring(2)
+    println(str)*/
+
+
+
 }
