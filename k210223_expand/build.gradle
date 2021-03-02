@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation project(path: ':base_lib')
+    implementation project(':base_lib')
 //    api 'androidx.room:room-compiler:2.2.5'
 //    kapt 'androidx.room:room-compiler:2.2.5'
 
