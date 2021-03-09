@@ -1,5 +1,7 @@
 package com.example.weather.logic.model
 
+import com.google.gson.annotations.SerializedName
+
 data class DailyResponse(
     val api_status: String,
     val api_version: String,
@@ -24,7 +26,8 @@ data class DailyResponse(
         val cloudrate: List<Cloudrate>,
         val dswrf: List<Dswrf>,
         val humidity: List<Humidity>,
-        val life_index: LifeIndex,
+        @SerializedName("life_index")
+        val lifeIndex: LifeIndex,
         val precipitation: List<Precipitation>,
         val pressure: List<Pressure>,
         val skycon: List<Skycon>,
