@@ -4,13 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.weather.logic.Repository
-import com.example.weather.logic.model.Place
+import com.example.weather.logic.model.PlaceResponse
 
 class PlaceViewModel : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
 
-    val placeList = ArrayList<Place>()
+    val placeList = ArrayList<PlaceResponse.Place>()
 
     val placeLiveData = Transformations.switchMap(searchLiveData) { query ->
         Repository.searchPlaces(query)

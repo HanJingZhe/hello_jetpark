@@ -1,15 +1,12 @@
-package com.qtgm.base.utils
+package com.example.weather
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.util.Log
-import com.qtgm.base.BuildConfig
 import java.io.BufferedWriter
 import java.io.FileWriter
 import java.text.SimpleDateFormat
 import java.util.*
 
-object MsLog {
+object WLog {
 
     private val TAG = this.javaClass.simpleName
 

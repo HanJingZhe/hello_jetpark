@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.weather.WLog
 import com.example.weather.R
 import com.example.weather.logic.model.Weather
 import com.example.weather.logic.model.getSky
@@ -36,6 +37,8 @@ class WeatherActivity : AppCompatActivity() {
         if (viewModel.placeName.isEmpty()) {
             viewModel.placeName = intent.getStringExtra("place_name") ?: ""
         }
+
+        WLog.d("lng=${viewModel.locationLng},lat=${viewModel.locationLat},placeName=${viewModel.placeName}")
 
         viewModel.weatherLiveData.observe(this, Observer { result ->
             val weather = result.getOrNull()
@@ -67,7 +70,8 @@ class WeatherActivity : AppCompatActivity() {
         for (i in 0 until days) {
             val skycon = daily.skycon[i]
             val temperature = daily.temperature[i]
-            val view = LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout, false)
+            val view =
+                LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout, false)
             val dateInfo = view.findViewById(R.id.dateInfo) as TextView
             val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
             val skyInfo = view.findViewById(R.id.skyInfo) as TextView
