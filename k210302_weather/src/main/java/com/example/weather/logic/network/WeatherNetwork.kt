@@ -23,6 +23,11 @@ object WeatherNetwork {
     suspend fun getDailyWeather(lng: String, lat: String) =
         weatherService.getDailyWeather(lng, lat).await()
 
+    /**
+     * suspendCoroutine必须在协程作用域或挂起函数中调用,接收一个lambda表达式
+     * 主要功能是将当前协程立即挂起,然后在一个普通的线程中执行lambda表达式中的代码
+     * 参数列表会传入Continuation参数,调用他的resume()或resumeWithException()让协程恢复执行
+     */
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
@@ -35,7 +40,6 @@ object WeatherNetwork {
                 override fun onFailure(call: Call<T>, t: Throwable) {
                     continuation.resumeWithException(t)
                 }
-
             })
         }
     }

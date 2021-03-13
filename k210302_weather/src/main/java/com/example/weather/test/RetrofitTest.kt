@@ -2,6 +2,13 @@ package com.example.weather.test
 
 import com.example.weather.WeatherApplication
 import com.example.weather.logic.Repository
+import com.example.weather.logic.model.Weather
+import com.example.weather.logic.network.WeatherNetwork
+import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,10 +27,10 @@ fun main() {
         .build()
     val service = retrofit.create(TestService::class.java)
 
+    testRealtimeWeather(service)
 //    testDailyWeather(service)
-//    testRealtimeWeather(service)
 
-    testAppFun(service)
+//    testAppFun(service)
 }
 
 fun testAppFun(service: TestService) {
@@ -61,6 +68,44 @@ fun testRealtimeWeather(service: TestService) {
             println("fail Daily=${t.message}")
         }
     })
+
+    GlobalScope.launch {
+        val dailyWeather = WeatherNetwork.getDailyWeather(lng, lat)
+        val realTime = WeatherNetwork.getRealtimeWeather(lng, lat)
+        println("success Daily=${dailyWeather.status}")
+        println("success realtime=${realTime.status}")
+
+        val realtimeDeferred = async {
+            WeatherNetwork.getRealtimeWeather(lng,lat)
+        }
+
+        val deferredDaily = async {
+            WeatherNetwork.getDailyWeather(lng, lat)
+        }
+
+        val realtimeResult = realtimeDeferred.await()
+        val dailyResult = deferredDaily.await()
+        println("success realtime result=${realtimeResult.status}")
+        println("success daily result=${dailyResult.status}")
+
+        coroutineScope {
+            val deferredRealTime = async {
+                WeatherNetwork.getRealtimeWeather(lng, lat)
+            }
+            val deferredDaily = async {
+                WeatherNetwork.getDailyWeather(lng, lat)
+            }
+            val realTimeResponse = deferredRealTime.await()
+            val dailyResponse = deferredDaily.await()
+            if (realTimeResponse.status == "ok" && dailyResponse.status == "ok") {
+                val weather =
+                    Weather(realTimeResponse.result.realtime, dailyResponse.result.daily)
+                println("success weather=${weather}")
+                println("success weather=${Gson().toJson(weather)}")
+            }
+        }
+
+    }
 }
 
 fun testDailyWeather(service: TestService) {

@@ -8,15 +8,15 @@ data class RealTimeResponse(
     val lang: String,
     val location: List<Double>,
     val result: Result,
-    val server_time: Int,
+    val server_time: String,
     val status: String,
     val timezone: String,
-    val tzshift: Int,
+    val tzshift: String,
     val unit: String
 ) {
 
     data class Result(
-        val primary: Int,
+        val primary: String,
         val realtime: Realtime
     )
 
@@ -39,13 +39,13 @@ data class RealTimeResponse(
 
     data class AirQuality(
         val aqi: Aqi,
-        val co: Int,
+        val co: String,
         val description: Description,
-        val no2: Int,
-        val o3: Int,
-        val pm10: Int,
-        val pm25: Int,
-        val so2: Int
+        val no2: String,
+        val o3: String,
+        val pm10: String,
+        val pm25: String,
+        val so2: String
     )
 
     data class LifeIndex(
@@ -64,8 +64,8 @@ data class RealTimeResponse(
     )
 
     data class Aqi(
-        val chn: Int,
-        val usa: Int
+        val chn: String,
+        val usa: String
     )
 
     data class Description(
@@ -75,7 +75,7 @@ data class RealTimeResponse(
 
     data class Comfort(
         val desc: String,
-        val index: Int
+        val index: String
     )
 
     data class Ultraviolet(
@@ -85,13 +85,13 @@ data class RealTimeResponse(
 
     data class Local(
         val datasource: String,
-        val intensity: Double,
+        val Stringensity: Double,
         val status: String
     )
 
     data class Nearest(
         val distance: Double,
-        val intensity: Double,
+        val Stringensity: Double,
         val status: String
     )
 }

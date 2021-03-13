@@ -8,16 +8,16 @@ data class DailyResponse(
     val lang: String,
     val location: List<Double>,
     val result: Result,
-    val server_time: Int,
+    val server_time: String,
     val status: String,
     val timezone: String,
-    val tzshift: Int,
+    val tzshift: String,
     val unit: String
 ) {
 
     data class Result(
         val daily: Daily,
-        val primary: Int
+        val primary: String
     )
 
     data class Daily(
@@ -139,8 +139,8 @@ data class DailyResponse(
     data class Pm25(
         val avg: Double,
         val date: String,
-        val max: Int,
-        val min: Int
+        val max: String,
+        val min: String
     )
 
     data class Avg(
@@ -149,13 +149,13 @@ data class DailyResponse(
     )
 
     data class Max(
-        val chn: Int,
-        val usa: Int
+        val chn: String,
+        val usa: String
     )
 
     data class Min(
-        val chn: Int,
-        val usa: Int
+        val chn: String,
+        val usa: String
     )
 
     data class Sunrise(

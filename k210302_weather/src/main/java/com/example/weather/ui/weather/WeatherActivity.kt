@@ -1,16 +1,16 @@
 package com.example.weather.ui.weather
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.weather.WLog
 import com.example.weather.R
+import com.example.weather.WLog
 import com.example.weather.logic.model.Weather
 import com.example.weather.logic.model.getSky
 import kotlinx.android.synthetic.main.activity_weather.*
@@ -22,8 +22,7 @@ import java.util.*
 
 class WeatherActivity : AppCompatActivity() {
 
-    val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
-
+    private val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +45,7 @@ class WeatherActivity : AppCompatActivity() {
                 showWeatherInfo(weather)
             } else {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_SHORT).show()
-                result.exceptionOrNull()?.printStackTrace()
+                WLog.e("show error${result.exceptionOrNull()?.printStackTrace()}")
             }
         })
 
@@ -61,7 +60,7 @@ class WeatherActivity : AppCompatActivity() {
         val currentTempText = "${realtime.temperature.toInt()} ℃"
         currentTemp.text = currentTempText
         currentSky.text = getSky(realtime.skycon).info
-        val currentPM25Text = "空气指数 ${realtime.airQuality.aqi.chn.toInt()}"
+        val currentPM25Text = "空气指数 ${realtime.airQuality.aqi.chn}"
         currentAQI.text = currentPM25Text
         nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
         // 填充forecast.xml布局中的数据
@@ -77,7 +76,8 @@ class WeatherActivity : AppCompatActivity() {
             val skyInfo = view.findViewById(R.id.skyInfo) as TextView
             val temperatureInfo = view.findViewById(R.id.temperatureInfo) as TextView
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            dateInfo.text = simpleDateFormat.format(skycon.date)
+//            dateInfo.text = simpleDateFormat.format(skycon.date)
+            dateInfo.text = skycon.date.split("T")[0]
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.icon)
             skyInfo.text = sky.info
