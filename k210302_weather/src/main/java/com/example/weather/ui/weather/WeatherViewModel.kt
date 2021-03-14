@@ -18,7 +18,7 @@ class WeatherViewModel : ViewModel() {
 
     val weatherLiveData: LiveData<Result<Weather>> = Transformations.switchMap(locationLiveData) { location ->
         Repository.refreshWeather(location.lng, location.lat)
-        Repository.refreshWeather2(location.lng, location.lat)
+//        Repository.refreshWeather2(location.lng, location.lat)
     }
 
     fun refreshWeather(lng: String, lat: String) {

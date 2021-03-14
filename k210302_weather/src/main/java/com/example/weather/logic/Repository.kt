@@ -2,6 +2,8 @@ package com.example.weather.logic
 
 import androidx.lifecycle.liveData
 import com.example.weather.WLog
+import com.example.weather.logic.dao.PlaceDao
+import com.example.weather.logic.model.PlaceResponse
 import com.example.weather.logic.model.Weather
 import com.example.weather.logic.network.WeatherNetwork
 import com.google.gson.Gson
@@ -62,6 +64,15 @@ object Repository {
             }
         }
     }
+
+    /**
+     * 对于sp文件的读取也不宜放在主线程中使用, 应该开启线程然后通过liveData对象进行数据返回
+     */
+    fun savePlace(place: PlaceResponse.Place) = PlaceDao.savePlace(place)
+
+    fun getSavedPlace() = PlaceDao.getPlace()
+
+    fun isPlaceSaved() = PlaceDao.isPlaceSaved()
 
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {

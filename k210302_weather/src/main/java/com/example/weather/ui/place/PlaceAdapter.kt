@@ -11,7 +11,10 @@ import com.example.weather.R
 import com.example.weather.logic.model.PlaceResponse
 import com.example.weather.ui.weather.WeatherActivity
 
-class PlaceAdapter(private val fragment: Fragment, private val placeList: List<PlaceResponse.Place>) :
+class PlaceAdapter(
+    private val fragment: PlaceFragment,
+    private val placeList: List<PlaceResponse.Place>
+) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
 
@@ -32,7 +35,9 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
                 putExtra("location_lat", place.location.lat)
                 putExtra("place_name", place.name)
             }
+            fragment.viewModel.savePlace(place)
             fragment.startActivity(intent)
+            fragment.activity?.finish()
         }
         return holder
     }
