@@ -49,9 +49,19 @@ class WeatherActivity : AppCompatActivity() {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_SHORT).show()
                 WLog.e("show error${result.exceptionOrNull()?.printStackTrace()}")
             }
+            swipeRefresh.isRefreshing = false
         })
-
+        swipeRefresh.setColorSchemeResources(R.color.purple_500)
+        refreshWeather()
+        swipeRefresh.setOnRefreshListener {
+            refreshWeather()
+        }
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
+    }
+
+    fun refreshWeather() {
+        viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
+        swipeRefresh.isRefreshing = true
     }
 
     private fun setStatusBar() {
