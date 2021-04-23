@@ -9,7 +9,7 @@ android {
     resourcePrefix "base_"
 
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
