@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 
 class InvisibleFragment : Fragment() {
 
-    private var callback: ((Boolean, List<String>) -> Unit?)? = null
+    private var callback: ((Boolean, List<String>) -> Unit)? = null
 
     fun requestNow(cb: (Boolean, List<String>) -> Unit, vararg permissions: String) {
         callback = cb
