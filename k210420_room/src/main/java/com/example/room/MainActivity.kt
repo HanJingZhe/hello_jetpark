@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.room.database.AppDatabase
 import com.example.room.entity.Book
 import com.example.room.entity.User
-import com.qtgm.base.utils.MsLog
+import com.qtgm.base.utils.MyLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         btnGetUsers.setOnClickListener {
             thread {
                 val users = userDao.loadAllUsers()
-                MsLog.d("************select*************")
+                MyLog.d("************select*************")
                 users.forEach {
-                    MsLog.d(it.toString())
+                    MyLog.d(it.toString())
                 }
-                MsLog.d("************select*************\n")
+                MyLog.d("************select*************\n")
             }
         }
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         btnDeleteUser.setOnClickListener {
             thread {
                 val deleteUser = userDao.deleteUser(user1)
-                MsLog.d(deleteUser.toString())
+                MyLog.d(deleteUser.toString())
             }
         }
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         btnGetUserByAge.setOnClickListener {
             thread {
                 val loadUsersOlderThan = userDao.loadUsersOlderThan(55)
-                MsLog.d(loadUsersOlderThan.toString())
+                MyLog.d(loadUsersOlderThan.toString())
             }
         }
 
@@ -69,11 +69,11 @@ class MainActivity : AppCompatActivity() {
         btnQueryAllBook.setOnClickListener {
             thread {
                 val books = bookDao.selectAllBook()
-                MsLog.d("\n************select*************")
+                MyLog.d("\n************select*************")
                 books.forEach {
-                    MsLog.d(it.toString())
+                    MyLog.d(it.toString())
                 }
-                MsLog.d("************select*************\n")
+                MyLog.d("************select*************\n")
             }
         }
 
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             thread {
                 var book = Book("西游记", 500,"莫失")
                 val insert = bookDao.insert(book)
-                MsLog.d(insert.toString())
+                MyLog.d(insert.toString())
             }
         }
 

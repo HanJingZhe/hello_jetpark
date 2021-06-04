@@ -1,7 +1,6 @@
 package com.qtgm.expand.md
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.qtgm.base.base.BaseActivity
-import com.qtgm.base.utils.MsLog
+import com.qtgm.base.utils.MyLog
 import com.qtgm.expand.R
 import com.qtgm.expand.entity.AnimalEntity
 import com.qtgm.expand.entity.getAnimals
@@ -41,7 +40,7 @@ class MdActivity : BaseActivity() {
 
     override fun initData() {
         val statusBarHeight = getStatusBarHeight()
-        MsLog.e("statusBar=$statusBarHeight")
+        MyLog.e("statusBar=$statusBarHeight")
     }
 
     /**

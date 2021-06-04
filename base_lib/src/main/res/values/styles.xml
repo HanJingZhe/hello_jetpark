@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Dialog进入及退出动画 -->
+    <style name="base_common_bottom_dialog" parent="Theme.AppCompat.Dialog">
+        <!-- 设置无边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置未浮动窗口 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置完全透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/base_common_animation_bottom_dialog</item>
+    </style>
+
+    <style name="base_common_animation_bottom_dialog">
+        <item name="android:windowEnterAnimation">@anim/base_bottom_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/base_bottom_dialog_exit</item>
+    </style>
+
+
+</resources>

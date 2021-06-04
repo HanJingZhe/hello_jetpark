@@ -9,7 +9,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.qtgm.base.utils.MsLog
+import com.qtgm.base.utils.MyLog
 
 /**
  * 学习使用Navigation
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 arguments: Bundle?
             ) {
                 //收到切换监听
-                MsLog.e("Navigation switch destination ")
+                MyLog.e("Navigation switch destination ")
             }
 
         })

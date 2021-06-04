@@ -1,26 +1,44 @@
 package com.qtgm.base.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Looper
 import android.widget.Toast
-import com.qtgm.base.BuildConfig
+import kotlin.concurrent.thread
 
+/**
+ * @author peng_wang
+ * @date 2021/6/4
+ */
+@SuppressLint("StaticFieldLeak")
 object MsToast {
 
-    private val ISDEBUG = BuildConfig.DEBUG
     private lateinit var mContext: Context
+    private const val ISTOAST = true
 
-    fun initToast(ctx: Context) {
+    @JvmStatic
+    fun init(ctx: Context) {
         mContext = ctx
     }
 
+    @JvmStatic
     fun toastS(msg: String) {
-        if (!ISDEBUG) return
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show()
+        t(msg, Toast.LENGTH_SHORT)
     }
 
+    @JvmStatic
     fun toastL(msg: String) {
-        if (!ISDEBUG) return
-        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show()
+        t(msg, Toast.LENGTH_LONG)
     }
+
+    private fun t(msg: String, length: Int) {
+        thread {
+            Looper.prepare()
+            Toast.makeText(mContext, msg, length).show()
+            Looper.loop()
+            Looper.myLooper()?.quit()
+        }
+    }
+
 
 }
