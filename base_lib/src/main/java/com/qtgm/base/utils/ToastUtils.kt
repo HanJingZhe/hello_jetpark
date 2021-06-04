@@ -11,7 +11,7 @@ import kotlin.concurrent.thread
  * @date 2021/6/4
  */
 @SuppressLint("StaticFieldLeak")
-object MsToast {
+object ToastUtils {
 
     private lateinit var mContext: Context
     private const val ISTOAST = true

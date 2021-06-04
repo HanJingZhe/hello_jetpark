@@ -2,7 +2,7 @@ package com.qtgm.k210103_hello_navigation
 
 import android.app.Application
 import android.content.Context
-import com.qtgm.base.utils.MsToast
+import com.qtgm.base.utils.ToastUtils
 
 class MyApplication : Application() {
 
@@ -14,7 +14,7 @@ class MyApplication : Application() {
         super.onCreate()
         mContext = applicationContext
 
-        MsToast.initToast(mContext)
+        ToastUtils.initToast(mContext)
     }
 
 

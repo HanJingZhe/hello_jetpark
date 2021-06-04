@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.qtgm.base.permission.PermissionX
 import com.qtgm.base.utils.MyLog
-import com.qtgm.base.utils.MsToast
+import com.qtgm.base.utils.ToastUtils
 import com.qtgm.k210103_hello_navigation.R
 
 class LoginActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
             this, *permissions
         ) { all, list ->
             if (all) {
-                MsToast.toastL("is all gent")
+                ToastUtils.toastL("is all gent")
             } else {
                 MyLog.e(list.toString())
             }

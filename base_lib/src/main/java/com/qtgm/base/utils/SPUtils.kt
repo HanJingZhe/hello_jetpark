@@ -10,20 +10,20 @@ import android.content.SharedPreferences
  */
 @SuppressLint("StaticFieldLeak")
 object SPUtils {
-    private lateinit var ctx: Context
+    private lateinit var mContext: Context
 
     private const val spName = "shared_data"
 
     @JvmStatic
-    fun initSP(ctx: Context) {
-        SPUtils.ctx = ctx.applicationContext
+    fun init(ctx: Context) {
+        mContext = ctx.applicationContext
     }
 
     private fun getSp(): SharedPreferences {
-        if (!SPUtils::ctx.isInitialized) {
-            throw RuntimeException("ms sdk not init sp!")
+        if (!SPUtils::mContext.isInitialized) {
+            throw RuntimeException("baseLib not init sp!")
         }
-        return ctx.getSharedPreferences(spName, Context.MODE_PRIVATE)
+        return mContext.getSharedPreferences(spName, Context.MODE_PRIVATE)
     }
 
     @JvmStatic
