@@ -47,18 +47,24 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected open fun setStatusBarColor(): Int = Color.TRANSPARENT
 
+    protected open fun setNavigationBarColor(): Int = Color.TRANSPARENT
+
     /**
      * 是否设置状态栏字体颜色为暗色
      */
     protected open fun setStatusDark(): Boolean = true
 
     private fun setStatusBar(
-        color: Int = setStatusBarColor(),
+        statusBarColor: Int = setStatusBarColor(),
+        navigationBarColor: Int = setNavigationBarColor(),
         dark: Boolean = setStatusDark(),
         isPadding: Boolean = isPadding()
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = color
+            window.statusBarColor = statusBarColor
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = navigationBarColor
         }
         //6.0以上 android本身支持状态栏字体颜色设置
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
